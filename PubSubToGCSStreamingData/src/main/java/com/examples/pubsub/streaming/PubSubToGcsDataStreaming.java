@@ -54,6 +54,13 @@ public class PubSubToGcsDataStreaming {
 
         pipeline
                 .apply("Read PubSub Streaming message which is placed by GCS cloud scheduler every 1 min", PubsubIO.readStrings().fromTopic(options.getInputTopic()))
+                /*
+                Windowing a PCollection divides the elements into windows based on the associated event time for each element.
+                This is especially useful for PCollections with unbounded size, since it allows operating on a sub-group of the
+                elements placed into a related window. For PCollections with a bounded size (aka. conventional batch mode),
+                by default, all data is implicitly in a single window, unless Window is applied.
+                The following example demonstrates how to use Window in a pipeline that read messages from pubsub topic each minute:
+                 */
                 .apply("Apply windowing on input stream data", Window.into(FixedWindows.of(Duration.standardMinutes(options.getWindowSize()))))
                 .apply("Write the stream data as a separate files for every 1 min into GCS (GCS bucket location)", new WriteOneFilePerWindow(options.getOutput(), numShards));
 
