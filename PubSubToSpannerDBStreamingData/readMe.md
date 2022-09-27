@@ -1,4 +1,5 @@
-Prerequisites to exeuct this code in local:
+Prerequisites to execute this code in local:
+1. Add ubuntu distribution in windows OS to run docker commands and do shell scripting
 1. spanner emulator running in local using docker image
 2. pubsub emulator(pubsub fake server) running in local using gcloud beta
 3. python client setup in local to publish messages to pubsub emulator
