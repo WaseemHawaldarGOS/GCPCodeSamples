@@ -1,0 +1,15 @@
+version: '3'
+services:
+  spannerEmulator:
+    image: gcr.io/cloud-spanner-emulator/emulator:latest
+    ports:
+      - "9010:9010"
+      - "9020:9020"
+  pubsubEmulator:
+    image: bigtruedata/gcloud-pubsub-emulator
+    ports:
+      - "8161:8161"
+    environment:
+      - PUBSUB_PORT=8161
+      - PUBSUB_PROJECT=test-project
+      - PUBSUB_TOPIC=demotopic400

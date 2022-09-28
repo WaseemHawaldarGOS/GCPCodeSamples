@@ -7,7 +7,7 @@ import org.apache.beam.sdk.values.PCollection;
 
 public class PubSubHelperProcessor {
 
-    private static final String NAME = "PubSub - Read Enriched Transaction";
+    private static final String NAME = "PubSub - Read messages";
 
     public PCollection<String> readMessage(Pipeline pipeline, PubSubToSpannerDBDataStreamingOptions options){
         PubsubIO.Read<String> pubsubIO = PubsubIO.readStrings().fromSubscription(options.getPubSubSubscription());
